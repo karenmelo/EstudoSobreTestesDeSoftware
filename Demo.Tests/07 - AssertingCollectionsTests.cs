@@ -26,10 +26,10 @@
         public void Employee_Skills_JuniorMustNotPossessAdvancedSkill()
         {
             //Arrange & Act
-            var employee = EmployeeFactory.Create("Karen", 50000);
+            var employee = EmployeeFactory.Create("Karen", 500);
 
             //Assert
-            Assert.Contains("Microservice", employee.Skills);
+            Assert.DoesNotContain("Microservices", employee.Skills);
         }
 
         [Fact]

@@ -16,8 +16,9 @@ namespace Features.Clients
         {
         }
         
-        public Client(string name, string lastName, DateTime birthdate, DateTime registrationDate, string email, bool active)
+        public Client(Guid id,string name, string lastName, DateTime birthdate, DateTime registrationDate, string email, bool active)
         {
+            Id = id;
             Name = name;
             LastName = lastName;
             Birthdate = birthdate;
