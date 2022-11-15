@@ -1,6 +1,4 @@
-﻿using Features.Clients;
-
-namespace Features.Tests
+﻿namespace Features.Tests
 {
     [CollectionDefinition(nameof(ClientCollection))]
     public class ClientValidTest : IClassFixture<ClientTestsFixture>
