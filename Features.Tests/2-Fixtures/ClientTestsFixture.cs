@@ -1,4 +1,6 @@
-﻿using Features.Clients;
+﻿using Bogus;
+using Bogus.DataSets;
+using Features.Clients;
 
 namespace Features.Tests
 {
@@ -7,19 +9,28 @@ namespace Features.Tests
     {
 
     }
-      
+
     public class ClientTestsFixture : IDisposable
     {
         public Client GenerateValidClient()
         {
-            var client = new Client(
+            var gender = new Faker().PickRandom<Name.Gender>();
+            //var email = new Faker().Internet.Email;
+            //var clientFaker = new Faker<Client>();
+            //clientFaker.RuleFor(c => c.Name, (f, c) => f.Name.FirstName());
+
+            var client = new Faker<Client>("pt_BR").CustomInstantiator(f => new Client(
                 Guid.NewGuid(),
-                "Karen",
-                "Melo",
-                DateTime.Now.AddYears(-32),
+                f.Name.FirstName(gender),
+                f.Name.LastName(gender),
+                f.Date.Past(80, DateTime.Now.AddYears(-18)),
                 DateTime.Now,
-                "karen@karenmelo.com",
-                true);
+                "",
+                true
+                )).RuleFor(c => c.Email, (f, c) => f.Internet.Email(c.Name.ToLower(), c.LastName.ToLower()));
+
+
+
 
             return client;
         }
@@ -39,7 +50,7 @@ namespace Features.Tests
         }
 
         public void Dispose()
-        {            
+        {
         }
     }
 }
