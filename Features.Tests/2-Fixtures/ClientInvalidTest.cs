@@ -1,7 +1,7 @@
 ﻿namespace Features.Tests
 {
-    [CollectionDefinition(nameof(ClientCollection))]
-    public class ClientInvalidTest : IClassFixture<ClientTestsFixture>
+    [Collection(nameof(ClientCollection))]
+    public class ClientInvalidTest
     {
         private readonly ClientTestsFixture _clientFixture;
 

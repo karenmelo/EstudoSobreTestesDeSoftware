@@ -15,7 +15,7 @@ namespace Features.Tests
             return GenerateClients(1, true).FirstOrDefault();
         }
 
-        public IEnumerable<Client> GetVariedCLients()
+        public IEnumerable<Client> GetVariedClients()
         {
             var clients = new List<Client>();
 
@@ -41,7 +41,7 @@ namespace Features.Tests
                 f.Date.Past(80, DateTime.Now.AddYears(-18)),
                 DateTime.Now,
                 "",
-                true
+                active
                 ))
             .RuleFor(c => c.Email, (f, c) => f.Internet.Email(c.Name.ToLower(), c.LastName.ToLower()));
 
