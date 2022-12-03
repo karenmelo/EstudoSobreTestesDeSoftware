@@ -8,7 +8,7 @@ namespace Store.Sales.Domain
         public static int MAX_UNITS_ITEM => 15;
         public static int MIN_UNITS_ITEM => 1;
 
-        public Order()
+        protected Order()
         {
             _orderItems = new List<OrderItem>();
         }
