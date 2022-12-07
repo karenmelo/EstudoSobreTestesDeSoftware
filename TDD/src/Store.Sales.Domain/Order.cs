@@ -80,7 +80,7 @@ namespace Store.Sales.Domain
 
         private void ValidateOrderNonexistentItem(OrderItem item)
         {
-            if (!ExistingItemOrder(item)) throw new DomainException("O item não pertence ao order");
+            if (!ExistingItemOrder(item)) throw new DomainException("O item não pertence ao pedido");
         }
 
         private void ValidateAllowedItemQuantity(OrderItem item)
