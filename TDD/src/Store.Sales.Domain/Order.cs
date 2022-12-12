@@ -1,5 +1,4 @@
-﻿using FluentValidation.Results;
-using Store.Core.DomainObjects;
+﻿using Store.Core.DomainObjects;
 
 namespace Store.Sales.Domain
 {
@@ -21,51 +20,51 @@ namespace Store.Sales.Domain
         public OrderStatus OrderStatus { get; private set; }
 
         public bool VoucherUsed { get; private set; }
-        public Voucher Voucher { get; private set; }
+        //public Voucher Voucher { get; private set; }
 
         private readonly List<OrderItem> _orderItems;
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems;
 
-        public ValidationResult ApplyVoucher(Voucher voucher)
-        {
-            var result = voucher.ValidateIfApplicable();
-            if (!result.IsValid) return result;
+        //public ValidationResult ApplyVoucher(Voucher voucher)
+        //{
+        //    var result = voucher.ValidateIfApplicable();
+        //    if (!result.IsValid) return result;
 
-            Voucher = voucher;
-            VoucherUsed = true;
+        //    Voucher = voucher;
+        //    VoucherUsed = true;
 
-            CalculateTotalDiscountAmount();
+        //    CalculateTotalDiscountAmount();
 
-            return result;
-        }
+        //    return result;
+        //}
 
-        public void CalculateTotalDiscountAmount()
-        {
-            if (!VoucherUsed) return;
+        //public void CalculateTotalDiscountAmount()
+        //{
+        //    if (!VoucherUsed) return;
 
-            decimal discount = 0;
-            var amount = Amount;
+        //    decimal discount = 0;
+        //    var amount = Amount;
 
-            if (Voucher.TypeDiscountVoucher == TypeDiscountVoucher.Value)
-            {
-                if (Voucher.DiscountValue.HasValue)
-                {
-                    discount = Voucher.DiscountValue.Value;
-                    amount -= discount;
-                }
-            }
-            else
-            {
-                if (Voucher.PercentageDiscount.HasValue)
-                {
-                    discount = (Amount * Voucher.PercentageDiscount.Value) / 100;
-                    amount -= discount;
-                }
-            }
+        //    if (Voucher.TypeDiscountVoucher == TypeDiscountVoucher.Value)
+        //    {
+        //        if (Voucher.DiscountValue.HasValue)
+        //        {
+        //            discount = Voucher.DiscountValue.Value;
+        //            amount -= discount;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        if (Voucher.PercentageDiscount.HasValue)
+        //        {
+        //            discount = (Amount * Voucher.PercentageDiscount.Value) / 100;
+        //            amount -= discount;
+        //        }
+        //    }
 
-            Amount = amount < 0 ? 0 : amount;
-            Discount = discount;
-        }
+        //    Amount = amount < 0 ? 0 : amount;
+        //    Discount = discount;
+        //}
 
         private void CalculateOrderValue()
         {

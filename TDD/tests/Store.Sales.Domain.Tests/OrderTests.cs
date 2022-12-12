@@ -152,7 +152,7 @@ namespace Store.Sales.Domain.Tests
             Assert.Throws<DomainException>(() => order.RemoveItem(removeOrderItem));
         }
 
-        [Fact(DisplayName = "Remove Existing Order Item Should Calculated Total Value")]
+        [Fact(DisplayName = "Remove Existing Order Item Should Recalculated Total Value")]
         [Trait("Category", "Sales - Order")]
         public void RemoveOrderItem_ExistingItem_MustUpdateTotalValue()
         {
