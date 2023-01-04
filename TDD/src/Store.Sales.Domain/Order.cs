@@ -69,7 +69,7 @@ namespace Store.Sales.Domain
         private void CalculateOrderValue()
         {
             Amount = OrderItems.Sum(i => i.CalculateValue());
-            CalculateTotalDiscountAmount();
+            //CalculateTotalDiscountAmount();
         }
 
         public bool ExistingItemOrder(OrderItem item)
