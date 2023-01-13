@@ -12,7 +12,7 @@
                 "PROMO15",
                 15,
                 null,
-                TypeDiscountVoucher.Value,
+                VoucherDiscountType.Value,
                 1,
                 DateTime.Now.AddDays(15),
                 true,
@@ -32,7 +32,7 @@
         public void Voucher_ValidateVoucherTypeValue_MustBeInvalid()
         {
             // Arrange
-            var voucher = new Voucher("", null, null, TypeDiscountVoucher.Value, 0, DateTime.Now.AddDays(-1), false, true);
+            var voucher = new Voucher("", null, null, VoucherDiscountType.Value, 0, DateTime.Now.AddDays(-1), false, true);
 
             // Act
             var result = voucher.ValidateIfApplicable();
@@ -53,7 +53,7 @@
         public void Voucher_ValidateVoucherTypePercentage_MustBeValid()
         {
             // Arrange
-            var voucher = new Voucher("PROMO1OFF", null, 10, TypeDiscountVoucher.Percentage, 1, DateTime.Now.AddDays(15), true, false);
+            var voucher = new Voucher("PROMO1OFF", null, 10, VoucherDiscountType.Percentage, 1, DateTime.Now.AddDays(15), true, false);
 
             // Act
             var result = voucher.ValidateIfApplicable();
@@ -68,7 +68,7 @@
         public void Voucher_ValidateVoucherTypePercentage_MustBeInvalid()
         {
             // Arrange
-            var voucher = new Voucher("", 15, null, TypeDiscountVoucher.Percentage, 0, DateTime.Now.AddDays(-1), false, true);
+            var voucher = new Voucher("", 15, null, VoucherDiscountType.Percentage, 0, DateTime.Now.AddDays(-1), false, true);
 
             // Act
             var result = voucher.ValidateIfApplicable();

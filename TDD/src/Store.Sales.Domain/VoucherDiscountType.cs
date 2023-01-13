@@ -1,6 +1,6 @@
 ﻿namespace Store.Sales.Domain
 {
-    public enum TypeDiscountVoucher
+    public enum VoucherDiscountType
     {
         Percentage = 0,
         Value = 1

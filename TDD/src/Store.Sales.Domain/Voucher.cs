@@ -5,12 +5,12 @@ namespace Store.Sales.Domain
 {
     public class Voucher
     {
-        public Voucher(string code, decimal? discountValue, decimal? discountPercentual, TypeDiscountVoucher typeDiscountVoucher, int quantity, DateTime expirationDate, bool active, bool used)
+        public Voucher(string code, decimal? discountValue, decimal? discountPercentual, VoucherDiscountType voucherDiscountType, int quantity, DateTime expirationDate, bool active, bool used)
         {
             Code = code;
             DiscountValue = discountValue;
             DiscountPercentual = discountPercentual;
-            TypeDiscountVoucher = typeDiscountVoucher;
+            VoucherDiscountType = voucherDiscountType;
             Quantity = quantity;
             ExpirationDate = expirationDate;
             Active = active;
@@ -20,7 +20,7 @@ namespace Store.Sales.Domain
         public string Code { get; private set; }
         public decimal? DiscountValue { get; private set; }
         public decimal? DiscountPercentual { get; private set; }
-        public TypeDiscountVoucher TypeDiscountVoucher { get; private set; }
+        public VoucherDiscountType VoucherDiscountType { get; private set; }
         public int Quantity { get; private set; }
         public DateTime ExpirationDate { get; private set; }
         public bool Active { get; private set; }
@@ -64,7 +64,7 @@ namespace Store.Sales.Domain
                 .GreaterThan(0)
                 .WithMessage(QuantityErroMsg);
 
-            When(f => f.TypeDiscountVoucher == TypeDiscountVoucher.Value, () =>
+            When(f => f.VoucherDiscountType == VoucherDiscountType.Value, () =>
             {
                 RuleFor(c => c.DiscountValue)
                 .NotNull()
@@ -74,7 +74,7 @@ namespace Store.Sales.Domain
 
             });
 
-            When(f => f.TypeDiscountVoucher == TypeDiscountVoucher.Percentage, () =>
+            When(f => f.VoucherDiscountType == VoucherDiscountType.Percentage, () =>
             {
                 RuleFor(c => c.DiscountPercentual)
                 .NotNull()
