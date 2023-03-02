@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Store.Core.DomainObjects;
+using Store.Core.Messages;
 using Store.Sales.App.Events;
 using Store.Sales.Domain;
 
@@ -49,7 +50,7 @@ namespace Store.Sales.App.Commands
             return await _orderRepository.UnitOfWork.Commit();
         }
 
-        private async Task<bool> MessageIsValid(AddOrderItemCommand message, CancellationToken cancellationToken)
+        private async Task<bool> MessageIsValid(Command message, CancellationToken cancellationToken)
         {
             if (!message.IsValid())
             {
